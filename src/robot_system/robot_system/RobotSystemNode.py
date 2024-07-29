@@ -2,7 +2,14 @@ import datetime
 import traceback
 
 import rclpy as rp
-from library.Constants import Service, Topic, Constants, DeviceCode, DeviceStatus, ResponseCode
+from library.Constants import (
+    Service,
+    Topic,
+    Constants,
+    DeviceCode,
+    DeviceStatus,
+    ResponseCode,
+)
 from message.msg import DispenserStatus, ComponentStatus
 from message.srv import RobotService
 from rclpy.node import Node
@@ -11,10 +18,10 @@ from robot_system.RobotSystem import RobotSystem
 
 
 class RobotSystemNode(Node):
-    GRIPPER_INIT = 'gripper_init'
-    SHAKE = 'shake'
-    HOME = 'home'
-    RAIL_BASE = 'rail_base'
+    GRIPPER_INIT = "gripper_init"
+    SHAKE = "shake"
+    HOME = "home"
+    RAIL_BASE = "rail_base"
 
     def __init__(self):
         super().__init__(Constants.ROBOTS_SYSTEM)
@@ -24,13 +31,19 @@ class RobotSystemNode(Node):
         qos_profile = QoSProfile(depth=Constants.QOS_DEFAULT)
 
         # 로봇 시스템 요청 서비스
-        self.service = self.create_service(RobotService, Service.SERVICE_ROBOT, self.callback_robot_service)
+        self.service = self.create_service(
+            RobotService, Service.SERVICE_ROBOT, self.callback_robot_service
+        )
 
         # 로봇 시스템 상태 정보 송신
-        self.publisher = self.create_publisher(DispenserStatus, Topic.ROBOT_STATUS, qos_profile=qos_profile)
+        self.publisher = self.create_publisher(
+            DispenserStatus, Topic.ROBOT_STATUS, qos_profile=qos_profile
+        )
 
         # 로봇 시스템 토픽 타이머 변수
-        self.timer = self.create_timer(timer_period_sec=Constants.TIMER_PERIOD, callback=self.timer_execute)
+        self.timer = self.create_timer(
+            timer_period_sec=Constants.TIMER_PERIOD, callback=self.timer_execute
+        )
 
         self.robot_system = RobotSystem()
         self.node_status = DeviceStatus.STANDBY
@@ -121,7 +134,7 @@ def main(args=None):
     try:
         rp.spin(node)
     except KeyboardInterrupt:
-        print('Keyboard Interrupt (SIGINT)')
+        print("Keyboard Interrupt (SIGINT)")
 
     except SystemExit:  # <--- process the exception
         print("RobotSystemNode System Exiting")
@@ -145,5 +158,6 @@ def main(args=None):
         node.destroy_node()
         rp.shutdown()
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     main()

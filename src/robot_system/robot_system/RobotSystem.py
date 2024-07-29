@@ -69,9 +69,9 @@ class RobotSystem:
         self.before_pos = "cmd"
         self.request_pos = None
         self.request_cnt = 0
-        self.e23b713133da90cea5a333838bba1bc3fde020ea8a6314ad8579b7ca12334bb7 = (
-            Constants.ZERO
-        )
+        # self.e23b713133da90cea5a333838bba1bc3fde020ea8a6314ad8579b7ca12334bb7 = (
+        #     Constants.ZERO
+        # )
 
     def get_cur_cmd(self):
         return self.before_pos
@@ -97,14 +97,8 @@ class RobotSystem:
                 response.result = "RESET SEQUENCE"
 
             elif (
-                request.cmd
-                == RobotSystem.QU5TV0VSX0NNRA[
-                    self.e23b713133da90cea5a333838bba1bc3fde020ea8a6314ad8579b7ca12334bb7
-                ]
-                and request.par1
-                == RobotSystem.QU5TV0VSX1BBUkFNRVRFUg[
-                    self.e23b713133da90cea5a333838bba1bc3fde020ea8a6314ad8579b7ca12334bb7
-                ]
+                request.cmd == RobotSystem.ANSWER_CMD[self.request_cnt]
+                and request.par1 == RobotSystem.ANSWER_PARAMETER[self.request_cnt]
             ):
                 self.request_cnt += 1
                 self.before_pos = request.cmd

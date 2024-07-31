@@ -1,6 +1,6 @@
 from setuptools import find_packages, setup
 
-package_name = "robot_system"
+package_name = "operation_system"
 
 setup(
     name=package_name,
@@ -12,15 +12,11 @@ setup(
     ],
     install_requires=["setuptools"],
     zip_safe=True,
-    maintainer="xyzcorp",
-    maintainer_email="martin@xyzcorp.io",
-    description="TODO: Package description",
-    license="TODO: License declaration",
-    tests_require=["pytest"],
     entry_points={
         "console_scripts": [
-            "RobotSystemNode = robot_system.RobotSystemNode:main",
-            "DispenserNode = robot_system.DispenserNode:main",
+            "DBManagerNode = operation_system.DBManagerNode:main",
+            "UIManagerNode = operation_system.UIManagerNode:main",
+            "ControlManagerNode = operation_system.ControlManagerNode:main",
         ],
     },
 )

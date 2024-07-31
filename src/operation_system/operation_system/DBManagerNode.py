@@ -18,7 +18,7 @@ class DBManagerNode(Node):
         self.db_manager = DBManager("test.db")
         self.get_logger().info(f"Current Cmd {self.db_manager.get_cur_cmd()}")
 
-    def callback_db_manager(self, request, response):
+    def callback_db_service(self, request, response):
         """
         DB 서비스 요청을 받으면 실행되는 메소드
         :param request: 서비스 콜을 받은 메세지

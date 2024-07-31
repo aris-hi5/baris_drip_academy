@@ -16,7 +16,7 @@ setup(
         "console_scripts": [
             "DBManagerNode = operation_system.DBManagerNode:main",
             "UIManagerNode = operation_system.UIManagerNode:main",
-            "ControlManagerNode = operation_system.ControlManagerNode:main",
+            "ClientNode = operation_system.client:main",
         ],
     },
 )

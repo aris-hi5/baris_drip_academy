@@ -3,7 +3,7 @@ from rclpy.node import Node
 from library.Constants import Service, Topic, Constants
 from message.srv import RobotService
 from message.msg import ControlStatus
-from .ControlManager import ControlManager
+from operation_system.ControlManager import ControlManager
 
 
 class ControlManagerNode(Node):

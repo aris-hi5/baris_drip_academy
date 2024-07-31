@@ -1,5 +1,4 @@
 import sqlite3
-from DBManager import DBManager
 
 
 class DBManager:
@@ -7,6 +6,11 @@ class DBManager:
         self.connection = sqlite3.connect(db_path)
         self.cursor = self.connection.cursor()
         self.initialize_database()
+        self.before_pos = "cmd"
+
+    """
+    데이터베이스 초기화
+    """
 
     def initialize_database(self):
         create_baris_commands_table = """
@@ -22,6 +26,10 @@ class DBManager:
         """
         self.process_request(create_baris_commands_table)
         self.insert_initial_data()
+
+    """
+    초기 데이터 삽입
+    """
 
     def insert_initial_data(self):
         # Initial data insertion with comments
@@ -55,10 +63,29 @@ class DBManager:
         """
         self.process_request(insert_data_query)
 
+    """
+    명령을 no로 조회
+    """
+
     def get_command_by_no(self, no) -> list:
-        self.cursor.execute(f"SELECT * FROM baris_commands WHERE no={no}")
-        commands = self.cursor.fetchall()
-        return commands
+        try:
+            self.cursor.execute(f"SELECT * FROM baris_commands WHERE no={no}")
+            result = self.cursor.fetchall()
+            resultDetail = result[0]
+            return (
+                resultDetail[1],
+                resultDetail[2],
+                resultDetail[3],
+                resultDetail[4],
+                resultDetail[5],
+                resultDetail[6],
+            )
+        except sqlite3.Error as e:
+            print(f"SQLite error: {e}")
+
+    """
+    명령 실행
+    """
 
     def process_request(self, request):
         try:
@@ -69,17 +96,20 @@ class DBManager:
             print(f"SQLite error: {e}")
             return False
 
+    def get_cur_cmd(self):
+        return self.before_pos
+
 
 def main():
     # 데이터베이스 초기화 (테스트용)
     db_path = "test.db"
-    manager = SQLiteManager(db_path)
+    manager = DBManager(db_path)
 
     # get_all_commands 테스트
     print("All commands in baris_commands table:")
-    commands = manager.get_all_commands()
-    for command in commands:
-        print(command)
+    for i in range(1, 26):
+        # message = manager.get_command_by_no(i)
+        print(manager.get_command_by_no(i))
 
 
 if __name__ == "__main__":

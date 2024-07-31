@@ -1,5 +1,5 @@
-from src.operation_system.db import DBManager
-from src.operation_system.ui import UIManager
+from operation_system.DBManager import DBManager
+from operation_system.DBManager import UIManager
 
 
 class ControlManager:

@@ -11,7 +11,7 @@ class DBManagerNode(Node):
 
         #   DBManagerNode 서비스 생성
         self.service = self.create_service(
-            DBService, Service.SERVICE_DB, self.callback_db_manager
+            DBService, Service.SERVICE_DB, self.callback_db_service
         )
 
         #   DBManager 객체 생성

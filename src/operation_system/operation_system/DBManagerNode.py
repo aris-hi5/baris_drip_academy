@@ -27,12 +27,12 @@ class DBManagerNode(Node):
         """
         try:
             return_value = self.db_manager.get_command_by_no(request.seq_no)
-            response.cmd = return_value.cmd
-            response.par1 = return_value.par1
-            response.par2 = return_value.par2
-            response.par3 = return_value.par3
-            response.par4 = return_value.par4
-            response.par5 = return_value.par5
+            response.cmd = return_value[0]
+            response.par1 = return_value[1]
+            response.par2 = return_value[2]
+            response.par3 = return_value[3]
+            response.par4 = return_value[4]
+            response.par5 = return_value[5]
 
         except Exception as error:
             print(f"DBManagerNode callback_db_manager {error=}, {type(error)=}")

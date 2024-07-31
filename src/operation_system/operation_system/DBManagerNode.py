@@ -26,7 +26,7 @@ class DBManagerNode(Node):
         :return: 서비스 응답
         """
         try:
-            return_value = self.db_manager.get_command_by_no(request.command_no)
+            return_value = self.db_manager.get_command_by_no(request.seq_no)
             response.cmd = return_value.cmd
             response.par1 = return_value.par1
             response.par2 = return_value.par2

@@ -10,7 +10,7 @@ class RobotSystem:
     로봇 시스템 클래스
     """
 
-    QU5TV0VSX0NNRA = [
+    ANSWER_CMD = [
         RobotCommand.HOME_NORMAL,
         RobotCommand.GRIPPER_INIT,
         RobotCommand.PICKUP,
@@ -36,7 +36,7 @@ class RobotSystem:
         RobotCommand.GESTURE,
     ]
 
-    QU5TV0VSX1BBUkFNRVRFUg = [
+    ANSWER_PARAMETER = [
         RobotParameter.ZERO,
         RobotParameter.ZERO,
         RobotParameter.DSP,
